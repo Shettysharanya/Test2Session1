@@ -1,52 +1,4 @@
- gcc -g p2original.c
- gdb a.out
-GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
-Copyright (C) 2018 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
-and "show warranty" for details.
-This GDB was configured as "x86_64-linux-gnu".
-Type "show configuration" for configuration details.
-For bug reporting instructions, please see:
-<http://www.gnu.org/software/gdb/bugs/>.
-Find the GDB manual and other documentation resources online at:
-<http://www.gnu.org/software/gdb/documentation/>.
-For help, type "help".
-Type "apropos word" to search for commands related to "word"...
- 
- gcc -g p5original.c
- gdb a.out
-GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
-Copyright (C) 2018 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
-and "show warranty" for details.
-This GDB was configured as "x86_64-linux-gnu".
-Type "show configuration" for configuration details.
-For bug reporting instructions, please see:
-<http://www.gnu.org/software/gdb/bugs/>.
-Find the GDB manual and other documentation resources online at:
-<http://www.gnu.org/software/gdb/documentation/>.
-For help, type "help".
-Type "apropos word" to search for commands related to "word"...
- 
- gcc -g p7original.c
- gdb a.out
-GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
-Copyright (C) 2018 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
-and "show warranty" for details.
-This GDB was configured as "x86_64-linux-gnu".
-Type "show configuration" for configuration details.
-For bug reporting instructions, please see:
-<http://www.gnu.org/software/gdb/bugs/>.
-Find the GDB manual and other documentation resources online at:
- 
- gcc -g p2original.c
+gcc -g p2original.c
  gdb a.out
 GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
 Copyright (C) 2018 Free Software Foundation, Inc.
@@ -64,33 +16,54 @@ For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from a.out...done.
 (gdb) b main
-Breakpoint 1 at 0x89d: file p2original.c, line 24.
+Breakpoint 1 at 0x871: file p2original.c, line 22.
 (gdb) r
 Starting program: /home/runner/Test2Session1/a.out 
 warning: Error disabling address space randomization: Operation not permitted
 
-Breakpoint 1, main () at p2original.c:24
-24      a = input_side();
+Breakpoint 1, main () at p2original.c:22
+22  {
 (gdb) n
-Enter a length of a triangle :
- 6
-25      b = input_side();
+25    input_line(&x1,&y1,&x2,&y2,&x3,&y3);
+(gdb) s
+input_line (x1=0x7fff5140415c, y1=0x7fff51404164, x2=0x7fff51404160, 
+    y2=0x7fff51404168, x3=0x7fff5140416c, y3=0x7fff51404170) at p2original.c:4
+4     printf("Enter three coordinates ");
 (gdb) n
-Enter a length of a triangle :
- 3
-26      c = input_side();
+5     scanf("%f%f%f%f%f%f",x1,y1,x2,y2,x3,y3);
 (gdb) n
-Enter a length of a triangle :
- 6
-27      isscalene = check_scalene(a,b,c);
+Enter three coordinates 1
+2
+8
+9
+6
+7
+6   }
 (gdb) n
-28      output(a,c,isscalene);
+main () at p2original.c:26
+26    t=is_triangle(x1,y1,x2,y2,x3,y3);
+(gdb) s
+is_triangle (x1=1, y1=2, x2=8, y2=9, x3=6, y3=7) at p2original.c:9
+9     float area=0.5*(x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2));
 (gdb) n
-29      return 0;
+10    if(area>0)
 (gdb) n
-30  }(gdb) n
-__libc_start_main (main=0x55dc95200895 <main>, argc=1, argv=0x7ffeffbf0738, 
-    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
-    stack_end=0x7ffeffbf0728) at ../csu/libc-start.c:344
-344 ../csu/libc-start.c: No such file or directory.
-(gdb) 
+12    return 0;
+(gdb) n
+13  }
+(gdb) n
+main () at p2original.c:27
+27    output(x1,y1,x2,y2,x3,y3,t);
+(gdb) s
+output (x1=1, y1=2, x2=8, y2=9, x3=6, y3=7, istriangle=0) at p2original.c:17
+17        printf("Three lines with coordinates %f,%f  %f,%f  %f,%f form a triangle\n",x1,y1,x2,y2,x3,y3);
+(gdb) n
+Three lines with coordinates 1.000000,2.000000  8.000000,9.000000  6.000000,7.000000 form a triangle
+20  }
+(gdb) n
+main () at p2original.c:28
+28    return 0;
+(gdb) c
+Continuing.
+[Inferior 1 (process 2305) exited normally]
+(gdb) q

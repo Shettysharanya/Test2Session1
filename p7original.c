@@ -6,7 +6,7 @@ struct _triangle
 typedef struct _triangle triangle;
 triangle input_triangle()
 {
-  triangle t;
+  triangle t;b
   printf("enter the base and altitude of triangle you want to find area of\n");
   scanf("%f %f",&t.base,&t.altitude);
   return t;
