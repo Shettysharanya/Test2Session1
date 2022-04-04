@@ -1,42 +1,47 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <math.h>
 int input()
 {
   int n;
-  printf("enter the number\n");
+  printf("Enter the number\n");
   scanf("%d",&n);
   return n;
 }
-int gcd(int a, int b)
+
+void init_array(int n, int a[n])
 {
-  int i, x, t;
-  x=0;
-  if(a>b)
-  {
-    t=a;
-    a=b;
-    b=t;
-  }
-  if(b%a==0)
-    return a;
-  {
-    for(i=1;i<a/2;i++)
-      {
-        (a%i==0 && b%i == 0);
-        x=i;
-      }
-  }
-  return x;
+  for(int i=0;i<n;i++)
+    a[i] = i;
+  a[1]=0;
 }
-void output(int a, int b, int gcd)
+
+void ets(int n, int a[n])
 {
-  printf("%d is GCD of %d and %d\n", gcd, a, b);
+  int i=0;
+  while(i<sqrt(n)){
+   for(;a[i]==0 ;i++);
+   for(int k=i+i;k<n;k += i)
+     a[i] = 0;
+   i++;
+  }
 }
+
+
+void output(int n, int a[n])
+{
+  for(int i=0;i<n;i++)
+    if(a[i]!=0)
+      printf("%d ",a[i]);
+  printf("\n");
+}
+
 int main()
 {
-  int a, b, result;
-  a=input();
-  b=input();
-  result=gcd(a, b);
-  output(a, b, result);  
+  int n;
+  n=input();
+  int a[n];
+  init_array(n,a);
+  ets(n,a);
+  output(n,a);
   return 0;
-}
+} 
